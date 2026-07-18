@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=My Blog Software web
+Comment=Iniciar Laravel
+Exec=gnome-terminal -- bash -c "cd /home/jose/Documentos/Mi_blog_software/Laravel10/Mi_blog && php artisan serve; exec bash"
+Icon=/home/jose/Documentos/Mi_blog_software/Laravel10/Mi_blog/public/img/icon/perfil_git.gif
+Terminal=false
+Categories=Development;

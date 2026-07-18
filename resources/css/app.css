@@ -1,0 +1,333 @@
+@import '../../public/admin/assets/css/main.css';
+@import '../../public/admin/datatables/main.css';
+@import '../../public/admin/datatables/datatables.min.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== CONTENEDOR SUPERIOR ===== */
+
+.dataTables_wrapper .dt-layout-row:first-child{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+/* ===== BUSCADOR ===== */
+
+.dataTables_filter{
+
+    margin-bottom:10px;
+
+}
+
+.dataTables_filter label{
+
+    font-weight:600;
+
+}
+
+.dataTables_filter input{
+
+    border:1px solid #dee2e6 !important;
+
+    border-radius:10px !important;
+
+    padding:8px 15px !important;
+
+    margin-left:10px !important;
+
+    min-width:260px;
+
+    outline:none;
+
+}
+
+.dataTables_filter input:focus{
+
+    border-color:#0d6efd !important;
+
+    box-shadow:0 0 0 4px rgba(13,110,253,.15);
+
+}
+
+/* ===== SELECTOR DE REGISTROS ===== */
+
+.dataTables_length select{
+
+    border:1px solid #dee2e6;
+
+    border-radius:10px;
+
+    padding:6px 12px;
+
+}
+
+/* ===== BOTONES ===== */
+
+.dt-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:15px;
+
+}
+
+.dt-button{
+
+    border:none !important;
+
+    border-radius:10px !important;
+
+    padding:8px 18px !important;
+
+    font-weight:600 !important;
+
+    transition:.2s;
+
+}
+
+.dt-button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ===== PAGINACIÓN ===== */
+
+.dataTables_paginate{
+
+    margin-top:15px;
+
+}
+
+.dataTables_paginate .paginate_button{
+
+    border-radius:8px !important;
+
+    margin:0 3px !important;
+
+}
+
+.dataTables_paginate .current{
+
+    background:#0d6efd !important;
+
+    color:#fff !important;
+
+    border:none !important;
+
+}
+
+/* ===== INFORMACIÓN ===== */
+
+.dataTables_info{
+
+    font-weight:500;
+
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+    .dataTables_filter input{
+
+        width:100%;
+
+        min-width:100%;
+
+        margin-left:0 !important;
+
+        margin-top:8px;
+
+    }
+
+    .dt-buttons{
+
+        width:100%;
+
+    }
+
+}
+
+
+.card{
+    border:0;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.card-header{
+    background:#fff;
+    border-bottom:1px solid #e9ecef;
+}
+
+.card-header h4{
+    margin:0;
+    font-weight:700;
+}
+
+.table-responsive{
+    overflow-x:auto;
+}
+
+#myTable{
+    width:100% !important;
+}
+
+#myTable thead th{
+
+    text-align:center;
+
+    vertical-align:middle;
+
+    white-space:nowrap;
+
+    font-size:14px;
+
+}
+
+#myTable tbody td{
+
+    vertical-align:middle;
+
+    font-size:14px;
+
+}
+
+#myTable tbody tr:hover{
+
+    background:#f8f9fa;
+
+}
+
+.form-check{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin:0;
+
+}
+
+.btn{
+
+    border-radius:8px;
+
+}
+
+.d-grid{
+
+    min-width:120px;
+
+}
+
+
+
+.dashboard-card{
+    border:0;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.25s;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.dashboard-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 28px rgba(0,0,0,.12);
+}
+
+.numero{
+    font-size:42px;
+    font-weight:700;
+}
+
+.card-header-custom{
+    background:#fff;
+    border-bottom:1px solid #ececec;
+    padding:18px 25px;
+}
+
+.table thead{
+    background:#0d6efd;
+    color:#fff;
+}
+
+.table thead th{
+    vertical-align:middle;
+}
+
+.table td{
+    vertical-align:middle;
+}
+
+.badge-prioridad{
+    padding:8px 12px;
+    border-radius:30px;
+    font-size:13px;
+}
+
+.btn-accion{
+    border-radius:10px;
+}
+
+.fecha-vencida{
+    color:#dc3545;
+    font-weight:bold;
+}
+
+.fecha-proxima{
+    color:#fd7e14;
+    font-weight:bold;
+}
+
+.fecha-normal{
+    color:#198754;
+}
+
+.card-resumen{
+    border:0;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.btn-agregar{
+
+    border-radius:14px;
+
+    padding:12px 22px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    box-shadow:0 4px 12px rgba(13,110,253,.25);
+
+    transition:.25s;
+}
+
+.btn-agregar:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 20px rgba(13,110,253,.35);
+
+}
