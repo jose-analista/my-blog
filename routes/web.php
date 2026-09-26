@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\UsuarioController;
 use App\Http\Controllers\Admin\VentaController;
 use App\Http\Controllers\ContactoControllerform;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\DisenoswebController;
 use App\Models\Cliente;
 use App\Models\Contacto;
 use App\Models\Educacion;
@@ -196,5 +197,11 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::get('/accounts/leer', [HomeController::class, 'leer']);
 
     Route::post('/accounts/guardar', [HomeController::class, 'guardar']);
+
+     // Contacto
+// routes/web.php
+Route::get('/webdisenos/{diseno}/preview', [DisenoswebController::class, 'preview'])->name('disenos.preview');
+
+Route::resource('disenos', DisenoswebController::class)->names('Diseno');
 
 });

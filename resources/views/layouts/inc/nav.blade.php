@@ -115,6 +115,14 @@
                     <span class="text">Venta</span>
                 </a>
             </li>
+              <li class="nav-item">
+                <a href="{{ route('Diseno.index') }}">
+                    <span class="icon">
+                        <img src="{{asset('img/icon/project-diagram-svgrepo-com.svg')}}" alt="" width="22" height="22">
+                    </span>
+                    <span class="text">Diseños Web</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="{{ route('Servicios.index') }}">
                     <span class="icon">
