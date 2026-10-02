@@ -328,7 +328,10 @@
      */
 
     let grabadorDirectorio = null;
-
+/*
+ * Nombre del diseño (viene del controlador)
+ */
+const grabadorNombreDiseno = @json($diseno->nombre);
 
     /* =========================================================
        ELEMENTOS
@@ -374,6 +377,39 @@
         document.getElementById(
             'grabadorEstado'
         );
+
+        /* =========================================================
+   LIMPIAR TEXTO PARA NOMBRE DE ARCHIVO
+========================================================= */
+
+function limpiarNombre(texto) {
+
+    return String(texto || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')   // quita tildes
+        .replace(/[^a-zA-Z0-9]+/g, '-')    // símbolos y espacios a guiones
+        .replace(/^-+|-+$/g, '')           // quita guiones en los extremos
+        .toLowerCase()
+        .substring(0, 60)                  // limita el largo
+        || 'diseno';
+
+}
+
+
+/* =========================================================
+   NOMBRE FINAL DEL ARCHIVO
+========================================================= */
+
+function obtenerNombreArchivo() {
+
+    return (
+        limpiarNombre(grabadorNombreDiseno) +
+        '-' +
+        obtenerFecha() +
+        '.webm'
+    );
+
+}
 
 
     /* =========================================================
@@ -767,10 +803,7 @@
              * Crear nombre del archivo
              */
 
-            const nombreArchivo =
-                'grabacion-' +
-                obtenerFecha() +
-                '.webm';
+           const nombreArchivo = obtenerNombreArchivo();
 
 
             /*
@@ -930,10 +963,7 @@
 
          */
 
-        const enlace =
-            document.createElement(
-                'a'
-            );
+        enlace.download = obtenerNombreArchivo();
 
 
         enlace.href =
@@ -1123,322 +1153,230 @@
 
 </script>
 
+
 <script>
+(function () {
 
-    (function () {
+    /*
+    =========================================================
+    CONFIGURACIÓN
+    =========================================================
+    */
 
-        /*
-        =========================================================
-        ZOOM SIGUIENDO EL CURSOR
-        =========================================================
-        */
+    let zoomActual = 1;
 
-        let zoomActual = 1;
+    const ZOOM_MIN = 0.5;
+    const ZOOM_MAX = 2.5;
 
-        const ZOOM_MIN = 0.5;
-        const ZOOM_MAX = 2.5;
-        const ZOOM_PASO = 0.1;
+    // Zoom con teclado: 50%
+    const ZOOM_TECLADO = 0.5;
 
-        /*
-        Elemento que quieres ampliar.
-    
-        Cambia #contenidoDiseño por el ID
-        de tu preview.
-        */
+    // Zoom con rueda: 10%
+    const ZOOM_SCROLL = 0.1;
 
-        const elementoZoom =
-            document.getElementById('contenidoDiseño');
-
-        /*
-        Posición actual del cursor
-        */
-
-        let cursorX = 0;
-        let cursorY = 0;
+    const elementoZoom =
+        document.getElementById('contenidoDiseño');
 
 
-        /*
-        =========================================================
-        SEGUIR CURSOR
-        =========================================================
-        */
+    /*
+    =========================================================
+    POSICIÓN DEL CURSOR
+    =========================================================
+    */
 
-        document.addEventListener(
-            'mousemove',
-            function (event) {
+    let cursorX = 0;
+    let cursorY = 0;
 
-                cursorX = event.clientX;
-                cursorY = event.clientY;
+    document.addEventListener('mousemove', function (event) {
 
-            }
+        cursorX = event.clientX;
+        cursorY = event.clientY;
+
+    });
+
+
+    /*
+    =========================================================
+    CALCULAR ORIGEN DEL ZOOM
+    =========================================================
+    */
+
+    function actualizarOrigenCursor() {
+
+        if (!elementoZoom) return;
+
+        const rect =
+            elementoZoom.getBoundingClientRect();
+
+        const x =
+            cursorX - rect.left;
+
+        const y =
+            cursorY - rect.top;
+
+        const porcentajeX =
+            (x / rect.width) * 100;
+
+        const porcentajeY =
+            (y / rect.height) * 100;
+
+        elementoZoom.style.transformOrigin =
+            porcentajeX + '% ' +
+            porcentajeY + '%';
+    }
+
+
+    /*
+    =========================================================
+    APLICAR ZOOM
+    =========================================================
+    */
+
+    function aplicarZoom(nuevoZoom) {
+
+        if (!elementoZoom) return;
+
+        zoomActual = Math.max(
+            ZOOM_MIN,
+            Math.min(
+                ZOOM_MAX,
+                nuevoZoom
+            )
         );
 
+        actualizarOrigenCursor();
 
-        /*
-        =========================================================
-        CTRL + SCROLL
-        =========================================================
-        */
+        elementoZoom.style.transform =
+            'scale(' + zoomActual + ')';
+    }
 
-        document.addEventListener(
-            'wheel',
-            function (event) {
 
-                /*
-                Solo activar con CTRL
-                */
+    /*
+    =========================================================
+    CTRL + SCROLL
+    =========================================================
+    */
 
-                if (!event.ctrlKey) {
-                    return;
-                }
+    document.addEventListener(
+        'wheel',
+        function (event) {
 
-                /*
-                Evitar zoom del navegador
-                */
-
-                event.preventDefault();
-
-
-                if (!elementoZoom) {
-                    return;
-                }
-
-
-                /*
-                =================================================
-                POSICIÓN DEL ELEMENTO
-                =================================================
-                */
-
-                const rect =
-                    elementoZoom.getBoundingClientRect();
-
-
-                /*
-                =================================================
-                POSICIÓN DEL CURSOR DENTRO DEL ELEMENTO
-                =================================================
-                */
-
-                const x =
-                    event.clientX - rect.left;
-
-                const y =
-                    event.clientY - rect.top;
-
-
-                /*
-                =================================================
-                CONVERTIR A PORCENTAJE
-                =================================================
-                */
-
-                const porcentajeX =
-                    (x / rect.width) * 100;
-
-                const porcentajeY =
-                    (y / rect.height) * 100;
-
-
-                /*
-                =================================================
-                CAMBIAR ZOOM
-                =================================================
-                */
-
-                if (event.deltaY < 0) {
-
-                    zoomActual += ZOOM_PASO;
-
-                } else {
-
-                    zoomActual -= ZOOM_PASO;
-
-                }
-
-
-                /*
-                Limitar zoom
-                */
-
-                zoomActual = Math.max(
-                    ZOOM_MIN,
-                    Math.min(
-                        ZOOM_MAX,
-                        zoomActual
-                    )
-                );
-
-
-                /*
-                =================================================
-                HACER QUE EL CURSOR SEA EL CENTRO
-                =================================================
-                */
-
-                elementoZoom.style.transformOrigin =
-                    porcentajeX + '% ' +
-                    porcentajeY + '%';
-
-
-                /*
-                Aplicar zoom
-                */
-
-                elementoZoom.style.transform =
-                    'scale(' + zoomActual + ')';
-
-
-                /*
-                Mostrar porcentaje
-                */
-
-                mostrarZoom(
-                    Math.round(
-                        zoomActual * 100
-                    ) + '%'
-                );
-
-            },
-            {
-                passive: false
-            }
-        );
-
-
-        /*
-        =========================================================
-        CTRL + 0
-        =========================================================
-        */
-
-        document.addEventListener(
-            'keydown',
-            function (event) {
-
-                if (
-                    event.ctrlKey &&
-                    event.key === '0'
-                ) {
-
-                    event.preventDefault();
-
-                    zoomActual = 1;
-
-                    elementoZoom.style.transform =
-                        'scale(1)';
-
-                    elementoZoom.style.transformOrigin =
-                        'center center';
-
-                    mostrarZoom('100%');
-
-                }
-
-            }
-        );
-
-
-        /*
-        =========================================================
-        INDICADOR DE ZOOM
-        =========================================================
-        */
-
-        function mostrarZoom(valor) {
-
-            let indicador =
-                document.getElementById(
-                    'indicadorZoom'
-                );
-
-
-            if (!indicador) {
-
-                indicador =
-                    document.createElement(
-                        'div'
-                    );
-
-                indicador.id =
-                    'indicadorZoom';
-
-
-                indicador.style.position =
-                    'fixed';
-
-                indicador.style.zIndex =
-                    '999999';
-
-                indicador.style.pointerEvents =
-                    'none';
-
-                indicador.style.background =
-                    'rgba(15, 23, 42, .95)';
-
-                indicador.style.color =
-                    '#fff';
-
-                indicador.style.padding =
-                    '8px 12px';
-
-                indicador.style.borderRadius =
-                    '8px';
-
-                indicador.style.fontFamily =
-                    'monospace';
-
-                indicador.style.fontSize =
-                    '13px';
-
-                indicador.style.boxShadow =
-                    '0 8px 25px rgba(0,0,0,.25)';
-
-                document.body.appendChild(
-                    indicador
-                );
-
+            if (!event.ctrlKey) {
+                return;
             }
 
+            event.preventDefault();
 
-            indicador.textContent =
-                '🔍 ' + valor;
+            if (!elementoZoom) {
+                return;
+            }
+
+            if (event.deltaY < 0) {
+
+                aplicarZoom(
+                    zoomActual + ZOOM_SCROLL
+                );
+
+            } else {
+
+                aplicarZoom(
+                    zoomActual - ZOOM_SCROLL
+                );
+            }
+
+        },
+        {
+            passive: false
+        }
+    );
 
 
-            /*
-            Poner indicador cerca
-            del cursor
-            */
+/*
+=========================================================
+ATAJOS DE TECLADO
+=========================================================
 
-            indicador.style.left =
-                (cursorX + 15) + 'px';
+Ctrl + Z  → aumentar 50%
+Ctrl + X  → disminuir 50%
+Ctrl + 0  → volver a 100%
 
-            indicador.style.top =
-                (cursorY + 15) + 'px';
+=========================================================
+*/
 
+document.addEventListener(
+    'keydown',
+    function (event) {
 
-            indicador.style.display =
-                'block';
+        /*
+        -------------------------------------------------
+        CTRL + Z → AUMENTAR
+        -------------------------------------------------
+        */
 
+        if (
+            event.ctrlKey &&
+            event.key.toLowerCase() === 'z'
+        ) {
 
-            clearTimeout(
-                indicador._timeout
+            event.preventDefault();
+
+            aplicarZoom(
+                zoomActual + ZOOM_TECLADO
             );
 
-
-            indicador._timeout =
-                setTimeout(
-                    function () {
-
-                        indicador.style.display =
-                            'none';
-
-                    },
-                    800
-                );
-
+            return;
         }
 
-    })();
 
+        /*
+        -------------------------------------------------
+        CTRL + X → DISMINUIR
+        -------------------------------------------------
+        */
+
+        if (
+            event.ctrlKey &&
+            event.key.toLowerCase() === 'x'
+        ) {
+
+            event.preventDefault();
+
+            aplicarZoom(
+                zoomActual - ZOOM_TECLADO
+            );
+
+            return;
+        }
+
+
+        /*
+        -------------------------------------------------
+        CTRL + 0 → RESTABLECER
+        -------------------------------------------------
+        */
+
+        if (
+            event.ctrlKey &&
+            event.key === 'c'
+        ) {
+
+            event.preventDefault();
+
+            zoomActual = 1;
+
+            if (elementoZoom) {
+
+                elementoZoom.style.transform =
+                    'scale(1)';
+
+                elementoZoom.style.transformOrigin =
+                    'center center';
+            }
+
+            return;
+        }
+
+    }
+);
+})();
 </script>
