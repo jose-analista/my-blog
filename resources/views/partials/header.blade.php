@@ -1,4 +1,9 @@
 @php
+    // Foto del usuario: la suya si tiene, o la imagen por defecto.
+    $avatar = Auth::check()
+        ? asset(Auth::user()->imagen ?: 'img/usuario/negro.jpg')
+        : null;
+
     // Cada sección tiene su propio color. Las clases van completas para que Tailwind las detecte.
     $links = [
         ['href' => '#hero',      'label' => 'Inicio',     'dot' => 'bg-cyan-400',    'hover' => 'hover:text-cyan-300',    'active' => 'text-cyan-300 bg-cyan-500/15'],
@@ -29,7 +34,7 @@
                     <span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-slate-950" title="Disponible"></span>
                 </div>
 
-                <div class="leading-tight">
+                <!-- <div class="leading-tight">
                     <h1 class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-300 via-violet-400 to-pink-400 bg-clip-text text-transparent">
                         José Calderón
                     </h1>
@@ -40,7 +45,7 @@
                         <span class="text-slate-600">•</span>
                         <span class="text-violet-400">IA</span>
                     </p>
-                </div>
+                </div> -->
             </a>
 
             <!-- Menú desktop -->
@@ -84,9 +89,8 @@
                             <button id="user-menu-button" type="button"
                                     aria-haspopup="true" aria-expanded="false"
                                     class="flex items-center gap-3 pl-1.5 pr-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 hover:border-violet-500/60 transition">
-                                <span class="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 via-violet-500 to-pink-500 grid place-items-center text-sm font-bold text-white">
-                                    {{ strtoupper(mb_substr(Auth::user()->name, 0, 1)) }}
-                                </span>
+                                <img src="{{ $avatar }}" alt="Foto de {{ Auth::user()->name }}"
+                                     class="w-8 h-8 rounded-full object-cover ring-2 ring-violet-500/60">
                                 <span class="text-sm font-semibold text-white max-w-[120px] truncate">
                                     {{ Auth::user()->name }}
                                 </span>
@@ -98,9 +102,13 @@
                             <div id="user-menu"
                                  class="hidden absolute right-0 mt-3 w-64 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl shadow-black/50 overflow-hidden">
                                 <div class="h-0.5 bg-gradient-to-r from-cyan-400 via-violet-500 to-pink-500" aria-hidden="true"></div>
-                                <div class="px-4 py-3 border-b border-slate-800">
-                                    <p class="text-white font-semibold truncate">{{ Auth::user()->name }}</p>
-                                    <p class="text-slate-400 text-sm truncate">{{ Auth::user()->email }}</p>
+                                <div class="flex items-center gap-3 px-4 py-3 border-b border-slate-800">
+                                    <img src="{{ $avatar }}" alt="Foto de {{ Auth::user()->name }}"
+                                         class="w-11 h-11 rounded-full object-cover ring-2 ring-violet-500/60">
+                                    <div class="min-w-0">
+                                        <p class="text-white font-semibold truncate">{{ Auth::user()->name }}</p>
+                                        <p class="text-slate-400 text-sm truncate">{{ Auth::user()->email }}</p>
+                                    </div>
                                 </div>
 
                                 <a href="{{ route('logout') }}"
@@ -165,9 +173,8 @@
                     </div>
                 @else
                     <div class="flex items-center gap-3 p-3 mb-3 rounded-2xl bg-slate-950 border border-slate-800">
-                        <span class="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 via-violet-500 to-pink-500 grid place-items-center font-bold text-white">
-                            {{ strtoupper(mb_substr(Auth::user()->name, 0, 1)) }}
-                        </span>
+                        <img src="{{ $avatar }}" alt="Foto de {{ Auth::user()->name }}"
+                             class="w-10 h-10 rounded-full object-cover ring-2 ring-violet-500/60">
                         <div class="min-w-0">
                             <p class="text-white font-semibold truncate">{{ Auth::user()->name }}</p>
                             <p class="text-slate-400 text-sm truncate">{{ Auth::user()->email }}</p>
