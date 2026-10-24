@@ -1,212 +1,136 @@
+@php
+    $redes = [
+        ['nombre' => 'Facebook', 'url' => 'https://web.facebook.com/jose.miguelcalderon.9/', 'icono' => 'bxl-facebook'],
+        ['nombre' => 'Instagram', 'url' => 'https://www.instagram.com/_pantera616_/', 'icono' => 'bxl-instagram'],
+        ['nombre' => 'LinkedIn', 'url' => 'https://www.linkedin.com/', 'icono' => 'bxl-linkedin'],
+        ['nombre' => 'GitHub', 'url' => 'https://github.com/JOSE616MIGUEL', 'icono' => 'bxl-github'],
+    ];
+
+    $navegacion = [
+        ['texto' => 'Inicio', 'ancla' => 'hero'],
+        ['texto' => 'Sobre mí', 'ancla' => 'about'],
+        ['texto' => 'Habilidades', 'ancla' => 'skills'],
+        ['texto' => 'Portafolio', 'ancla' => 'portfolio'],
+        ['texto' => 'Servicios', 'ancla' => 'services'],
+        ['texto' => 'Contacto', 'ancla' => 'contact'],
+    ];
+
+    $tecnologias = ['Laravel', 'PHP', 'Linux', 'Tailwind', 'MySQL', 'IA'];
+@endphp
+
 <!-- ======= Footer ======= -->
-<footer class="bg-slate-950 border-t border-slate-800 mt-20">
+<footer class="border-t border-slate-800 bg-slate-950">
 
-    <div class="max-w-screen-2xl mx-auto px-6 lg:px-12 py-12">
+    <div class="mx-auto max-w-7xl px-6 py-14 lg:px-8">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
 
             <!-- Información -->
             <div>
+                <h2 class="text-2xl font-bold text-white">José Calderón</h2>
 
-                <h2 class="text-2xl font-bold text-white">
-                    José Calderón
-                </h2>
-
-                <p class="text-slate-400 mt-4 leading-relaxed">
-                    Analista Programador especializado en desarrollo web,
-                    Laravel, Linux, automatización de procesos e integración
-                    de tecnologías modernas.
+                <p class="mt-4 leading-relaxed text-slate-400">
+                    Analista programador especializado en desarrollo web, Laravel, Linux
+                    y automatización de procesos.
                 </p>
 
-                <div class="flex gap-4 mt-6">
-
-                    <a href="https://web.facebook.com/jose.miguelcalderon.9/"
-                       target="_blank"
-                       class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white hover:bg-cyan-500 transition">
-
-                        <i class="bx bxl-facebook text-xl"></i>
-
-                    </a>
-
-                    <a href="https://www.instagram.com/_pantera616_/"
-                       target="_blank"
-                       class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white hover:bg-pink-500 transition">
-
-                        <i class="bx bxl-instagram text-xl"></i>
-
-                    </a>
-
-                    <a href="https://www.linkedin.com/"
-                       target="_blank"
-                       class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white hover:bg-blue-500 transition">
-
-                        <i class="bx bxl-linkedin text-xl"></i>
-
-                    </a>
-
-                    <a href="https://github.com/JOSE616MIGUEL"
-                       target="_blank"
-                       class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white hover:bg-gray-700 transition">
-
-                        <i class="bx bxl-github text-xl"></i>
-
-                    </a>
-
-                </div>
-
+                <ul class="mt-6 flex gap-3">
+                    @foreach ($redes as $red)
+                        <li>
+                            <a href="{{ $red['url'] }}" target="_blank" rel="noopener noreferrer"
+                                aria-label="{{ $red['nombre'] }} (se abre en una pestaña nueva)"
+                                class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white transition hover:bg-cyan-500 hover:text-slate-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
+                                <i class="bx {{ $red['icono'] }} text-xl" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
 
             <!-- Navegación -->
-            <div>
-
-                <h3 class="text-white text-lg font-semibold mb-5">
-                    Navegación
-                </h3>
+            <nav aria-label="Navegación del pie de página">
+                <h3 class="mb-5 text-lg font-semibold text-white">Navegación</h3>
 
                 <ul class="space-y-3">
-
-                    <li>
-                        <a href="#hero"
-                           class="text-slate-400 hover:text-cyan-400 transition">
-                            Inicio
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#about"
-                           class="text-slate-400 hover:text-cyan-400 transition">
-                            Sobre mí
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#portfolio"
-                           class="text-slate-400 hover:text-cyan-400 transition">
-                            Portafolio
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#services"
-                           class="text-slate-400 hover:text-cyan-400 transition">
-                            Servicios
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#contact"
-                           class="text-slate-400 hover:text-cyan-400 transition">
-                            Contacto
-                        </a>
-                    </li>
-
+                    @foreach ($navegacion as $enlace)
+                        <li>
+                            <a href="{{ route('Welcome') }}#{{ $enlace['ancla'] }}"
+                                class="text-slate-400 transition hover:text-cyan-400 focus:outline-none focus-visible:text-cyan-400 focus-visible:underline">
+                                {{ $enlace['texto'] }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
-
-            </div>
+            </nav>
 
             <!-- Tecnologías -->
             <div>
+                <h3 class="mb-5 text-lg font-semibold text-white">Tecnologías</h3>
 
-                <h3 class="text-white text-lg font-semibold mb-5">
-                    Tecnologías
-                </h3>
-
-                <div class="flex flex-wrap gap-3">
-
-                    <span class="bg-slate-800 text-cyan-400 px-3 py-1 rounded-lg text-sm">
-                        Laravel
-                    </span>
-
-                    <span class="bg-slate-800 text-cyan-400 px-3 py-1 rounded-lg text-sm">
-                        PHP
-                    </span>
-
-                    <span class="bg-slate-800 text-cyan-400 px-3 py-1 rounded-lg text-sm">
-                        Linux
-                    </span>
-
-                    <span class="bg-slate-800 text-cyan-400 px-3 py-1 rounded-lg text-sm">
-                        Tailwind
-                    </span>
-
-                    <span class="bg-slate-800 text-cyan-400 px-3 py-1 rounded-lg text-sm">
-                        MySQL
-                    </span>
-
-                    <span class="bg-slate-800 text-cyan-400 px-3 py-1 rounded-lg text-sm">
-                        IA
-                    </span>
-
-                </div>
-
+                <ul class="flex flex-wrap gap-3">
+                    @foreach ($tecnologias as $tec)
+                        <li class="rounded-lg bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                            {{ $tec }}
+                        </li>
+                    @endforeach
+                </ul>
             </div>
 
             <!-- Contacto -->
             <div>
+                <h3 class="mb-5 text-lg font-semibold text-white">Contacto</h3>
 
-                <h3 class="text-white text-lg font-semibold mb-5">
-                    Contacto
-                </h3>
-
-                <div class="space-y-4">
-
+                <dl class="space-y-4">
                     <div>
-
-                        <p class="text-slate-500 text-sm">
-                            Correo
-                        </p>
-
-                        <p class="text-slate-300">
-                            jose.calderon15@inacapmail.cl
-                        </p>
-
+                        <dt class="text-sm text-slate-500">Correo</dt>
+                        <dd>
+                            <a href="mailto:jose.calderon15@inacapmail.cl"
+                                class="break-all text-slate-300 transition hover:text-cyan-400">
+                                jose.calderon15@inacapmail.cl
+                            </a>
+                        </dd>
                     </div>
 
+                  
+                        <div class="">
+    <dt class="font-bold text-white">WhatsApp</dt>
+    <dd>
+        <a href="https://wa.me/56972201918?text={{ urlencode('Hola José, vi tu portafolio y quiero conversar contigo.') }}"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="Escribir por WhatsApp (se abre en una pestaña nueva)"
+            class="hover:text-cyan-300">
+            +56 9 7220 1918
+        </a>
+    </dd>
+</div>
+
                     <div>
-
-                        <p class="text-slate-500 text-sm">
-                            Teléfono
-                        </p>
-
-                        <p class="text-slate-300">
-                            +56 9 3562 9178
-                        </p>
-
+                        <dt class="text-sm text-slate-500">Ubicación</dt>
+                        <dd class="text-slate-300">Santiago, Chile</dd>
                     </div>
-
-                    <div>
-
-                        <p class="text-slate-500 text-sm">
-                            Ubicación
-                        </p>
-
-                        <p class="text-slate-300">
-                            Santiago, Chile
-                        </p>
-
-                    </div>
-
-                </div>
-
+                </dl>
             </div>
 
         </div>
 
-        <!-- Línea -->
-        <div class="border-t border-slate-800 mt-12 pt-6">
+        <!-- Línea inferior -->
+        <div class="mt-12 border-t border-slate-800 pt-6">
+            <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
 
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-
-                <p class="text-slate-500 text-sm text-center md:text-left">
+                <p class="text-center text-sm text-slate-500 md:text-left">
                     © {{ date('Y') }} José Calderón. Todos los derechos reservados.
                 </p>
 
-                <p class="text-slate-500 text-sm">
-                    Desarrollado con Laravel + Tailwind CSS 🚀
-                </p>
+                <div class="flex items-center gap-6">
+                    <p class="text-sm text-slate-500">Hecho con Laravel y Tailwind CSS</p>
+
+                    <a href="#top"
+                        class="rounded-lg border border-slate-700 px-3 py-1 text-sm text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
+                        Volver arriba
+                    </a>
+                </div>
 
             </div>
-
         </div>
 
     </div>

@@ -76,8 +76,8 @@
                         class="w-full rounded-3xl border border-slate-800 object-cover shadow-2xl">
 
                     <div class="absolute -bottom-6 -right-6 rounded-2xl bg-cyan-500 p-6 text-slate-950 shadow-xl">
-                        <h3 class="text-3xl font-bold">Laravel</h3>
-                        <p class="text-sm font-medium">Full Stack Developer</p>
+                        <h3 class="text-3xl font-bold">Full Stack Developer</h3>
+                        {{-- <p class="text-sm font-medium">Full Stack Developer</p> --}}
                     </div>
                 </div>
 
@@ -91,7 +91,7 @@
 
                         <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
                             <dt class="font-bold text-white">Formación</dt>
-                            <dd>Analista Programador, INACAP</dd>
+                            <dd>Analista Programador</dd>
                         </div>
 
                         <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
@@ -100,11 +100,16 @@
                         </div>
 
                         <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-                            <dt class="font-bold text-white">Teléfono</dt>
-                            <dd>
-                                <a href="tel:+56935629178" class="hover:text-cyan-300">+56 9 3562 9178</a>
-                            </dd>
-                        </div>
+    <dt class="font-bold text-white">WhatsApp</dt>
+    <dd>
+        <a href="https://wa.me/56972201918?text={{ urlencode('Hola José, vi tu portafolio y quiero conversar contigo.') }}"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="Escribir por WhatsApp (se abre en una pestaña nueva)"
+            class="hover:text-cyan-300">
+            +56 9 7220 1918
+        </a>
+    </dd>
+</div>
 
                         <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
                             <dt class="font-bold text-white">Sitio web</dt>
