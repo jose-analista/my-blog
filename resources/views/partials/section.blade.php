@@ -11,7 +11,7 @@
     <div class="relative z-10 px-6 text-center">
 
         <div class="mb-8 flex justify-center">
-            <img src="{{ asset('assets/img/img1.jpg') }}" alt="Foto de José Calderón" width="160" height="160"
+            <img src="{{ asset('assets/img/img3.jpg') }}" alt="Foto de José Calderón" width="160" height="160"
                 class="h-40 w-40 rounded-full border-4 border-cyan-400 object-cover shadow-2xl transition duration-500 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100">
         </div>
 
