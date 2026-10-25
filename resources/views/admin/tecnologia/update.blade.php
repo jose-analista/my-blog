@@ -14,50 +14,52 @@
                 <form action="{{ route('Tecnologia.update', $tecnologia->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
-                    @method("PUT")
+                    @method('PUT')
                     <div class="row">
+
                         <div class="col-md-6 mb-3">
-                            <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control" value="{{$tecnologia->nombre}}" />
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control"
+                                value="{{ old('nombre', $tecnologia->nombre) }}" />
                             @error('nombre')
-                            <small>
-                                <strong>
-                                    <div class="alert alert-danger" role="alert">
-                                        Campo vacío
-                                    </div>
-                                </strong>
-                            </small>
+                                <div class="alert alert-danger mt-2 py-1" role="alert">Campo vacío</div>
                             @enderror
                         </div>
+
                         <div class="col-md-6 mb-3">
-                            <label>Tipo</label>
-                            <input type="text" name="tipo" class="form-control" value="{{$tecnologia->tipo}}" />
+                            <label for="tipo">Tipo</label>
+                            <input type="text" id="tipo" name="tipo" class="form-control"
+                                value="{{ old('tipo', $tecnologia->tipo) }}" />
                             @error('tipo')
-                            <small>
-                                <strong>
-                                    <div class="alert alert-danger" role="alert">
-                                        Campo vacío
-                                    </div>
-                                </strong>
-                            </small>
+                                <div class="alert alert-danger mt-2 py-1" role="alert">Campo vacío</div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="input-5">Imagen</label>
-                            <input type="file" class="form-control" name="imagen">
+
+                        <div class="col-md-12 mb-3">
+                            <label for="imagen">Imagen o SVG</label>
+
+                            {{-- Imagen actual (se muestra con <img>, nunca en línea) --}}
+                            @if ($tecnologia->imagen)
+                                <div class="mb-2 d-flex align-items-center gap-3">
+                                    <img src="{{ asset($tecnologia->imagen) }}" alt="{{ $tecnologia->nombre }}"
+                                        width="64" height="64" style="object-fit: contain;">
+                                    <small class="text-muted">Imagen actual. Sube otra solo si quieres reemplazarla.</small>
+                                </div>
+                            @endif
+
+                            <input type="file" id="imagen" class="form-control" name="imagen"
+                                accept=".jpg,.jpeg,.png,.gif,.svg,image/svg+xml">
+                            <small class="text-muted">Formatos: JPG, PNG, GIF o SVG. Máximo 2 MB.</small>
+
                             @error('imagen')
-                            <small>
-                                <strong>
-                                    <div class="alert alert-danger" role="alert">
-                                        Tipo de archivo no compatible con la imágenes
-                                    </div>
-                                </strong>
-                            </small>
+                                <div class="alert alert-danger mt-2 py-1" role="alert">{{ $message }}</div>
                             @enderror
                         </div>
+
                         <div class="col-md-12 mb-3">
                             <button type="submit" class="btn btn-primary float-end">Actualizar</button>
                         </div>
+
                     </div>
                 </form>
             </div>

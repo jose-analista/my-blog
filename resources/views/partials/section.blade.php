@@ -159,137 +159,32 @@
     </section>
 
     <!-- ===== HABILIDADES ===== -->
-   @php
-    // ── Logos SVG reales (trazados verificados): [viewBox, contenido] ──────────────
-    // Orden importa: lo más específico primero. Un valor null significa
-    // "no tengo logo, usa la insignia" (así "github" no cae en el logo de "git").
-    $logos = [
-        'python' => ['0 0 110 111',
-            '<path fill="#3776AB" d="M54.919 0C50.335.021 45.964.413 42.11 1.095 30.76 3.099 28.7 7.295 28.7 15.032v10.219h26.81v3.406H18.386c-7.792 0-14.616 4.684-16.75 13.594-2.462 10.213-2.571 16.586 0 27.25 1.906 7.938 6.457 13.594 14.249 13.594h9.215v-12.25c0-8.85 7.657-16.656 16.75-16.656h26.78c7.454 0 13.406-6.138 13.406-13.625V15.032c0-7.267-6.131-12.726-13.406-13.937C64.282.328 59.502-.02 54.919 0zM40.419 8.22c2.77 0 5.031 2.298 5.031 5.125 0 2.816-2.262 5.093-5.031 5.093-2.78 0-5.031-2.277-5.031-5.093 0-2.827 2.251-5.125 5.031-5.125z"/>
-             <path fill="#FFD43B" d="M85.638 28.657v11.906c0 9.231-7.826 16.999-16.75 16.999h-26.78c-7.335 0-13.406 6.278-13.406 13.625v25.531c0 7.266 6.318 11.54 13.406 13.625 8.488 2.495 16.627 2.946 26.78 0 6.75-1.954 13.406-5.888 13.406-13.625V86.5h-26.78v-3.406h40.186c7.792 0 10.696-5.435 13.406-13.594 2.799-8.399 2.68-16.476 0-27.25-1.925-7.758-5.604-13.594-13.406-13.594H85.638zM70.575 93.313c2.78 0 5.031 2.277 5.031 5.094 0 2.827-2.251 5.125-5.031 5.125-2.77 0-5.031-2.298-5.031-5.125 0-2.816 2.261-5.094 5.031-5.094z"/>'],
-        'tailwind' => ['0 0 24 24',
-            '<path fill="#06B6D4" d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/>'],
-        'html' => ['0 0 24 24',
-            '<path fill="#E34F26" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/>'],
-        'css' => ['0 0 24 24',
-            '<path fill="#1572B8" d="M1.5 0h21l-1.91 21.563L11.955 24l-8.542-2.437L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"/>'],
-        'javascript' => ['0 0 64 64',
-            '<rect width="64" height="64" rx="8" fill="#F7DF1E"/><text x="58" y="56" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="28" fill="#111827">JS</text>'],
-        'php' => ['0 0 64 64',
-            '<ellipse cx="32" cy="32" rx="31" ry="18" fill="#777BB4"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-style="italic" font-size="22" fill="#FFFFFF">php</text>'],
-        'github' => null,
-        'git' => ['0 0 64 64',
-            '<rect x="14" y="14" width="36" height="36" rx="5" fill="#F05032" transform="rotate(45 32 32)"/><g stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"><path d="M26 20v24M26 32l14 6"/></g><g fill="#fff"><circle cx="26" cy="20" r="4.5"/><circle cx="26" cy="44" r="4.5"/><circle cx="40" cy="38" r="4.5"/></g>'],
-    ];
+    <section id="skills" class="scroll-mt-24 py-24">
+        <div class="mx-auto max-w-7xl px-6">
 
-    // ── Insignias para el resto: [texto, color de fondo, color del texto] ──────────
-    // Las claves que empiezan con "=" exigen coincidencia exacta.
-    $iconos = [
-        'laravel'    => ['L',     '#FF2D20', '#FFFFFF'],
-        'typescript' => ['TS',    '#3178C6', '#FFFFFF'],
-        'java'       => ['Jv',    '#E76F00', '#FFFFFF'],
-        'react'      => ['Re',    '#61DAFB', '#0F172A'],
-        'vue'        => ['Vue',   '#4FC08D', '#0F172A'],
-        'bootstrap'  => ['B',     '#7952B3', '#FFFFFF'],
-        'asp'        => ['.NET',  '#512BD4', '#FFFFFF'],
-        '.net'       => ['.NET',  '#512BD4', '#FFFFFF'],
-        'c#'         => ['C#',    '#68217A', '#FFFFFF'],
-        'sql server' => ['SQL',   '#CC2927', '#FFFFFF'],
-        'mysql'      => ['My',    '#00758F', '#FFFFFF'],
-        'sql'        => ['SQL',   '#336791', '#FFFFFF'],
-        'json'       => ['{ }',   '#374151', '#FBBF24'],
-        'xml'        => ['</>',   '#F28B00', '#FFFFFF'],
-        'linux'      => ['Lx',    '#FCC624', '#111827'],
-        'ubuntu'     => ['Ub',    '#E95420', '#FFFFFF'],
-        'docker'     => ['Dk',    '#2496ED', '#FFFFFF'],
-        'nginx'      => ['N',     '#009639', '#FFFFFF'],
-        'github'     => ['GH',    '#24292F', '#FFFFFF'],
-        'ollama'     => ['IA',    '#7C3AED', '#FFFFFF'],
-        '=ia'        => ['IA',    '#7C3AED', '#FFFFFF'],
-        'api'        => ['API',   '#0EA5E9', '#FFFFFF'],
-    ];
+            <div class="mb-16 text-center">
+                <h2 class="mb-6 text-4xl font-bold text-white md:text-5xl">Habilidades</h2>
+                <p class="text-lg text-slate-400">Tecnologías que domino y uso en mis proyectos.</p>
+            </div>
 
-    // Busca por coincidencia en el nombre (minúsculas) dentro de una lista.
-    $buscar = function (array $lista, ?string $nombre) {
-        $n = mb_strtolower(trim($nombre ?? ''));
-        if ($n === '') {
-            return null;
-        }
-        foreach ($lista as $clave => $datos) {
-            if (str_starts_with($clave, '=')) {
-                if ($n === substr($clave, 1)) {
-                    return $datos;
-                }
-            } elseif (str_contains($n, $clave)) {
-                return $datos;
-            }
-        }
-        return null;
-    };
-@endphp
+            <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-6">
 
-<section id="skills" class="scroll-mt-24 py-24">
-    <div class="mx-auto max-w-7xl px-6">
+                @forelse ($tecnologia as $item)
+                    <div
+                        class="flex items-center justify-center rounded-3xl border border-slate-800 bg-slate-900 p-6 transition hover:border-cyan-500 hover:bg-slate-800">
+                        <img src="{{ asset($item->imagen) }}" alt="{{ $item->nombre ?? 'Tecnología' }}"
+                            title="{{ $item->nombre ?? '' }}" loading="lazy" class="h-20 w-20 object-contain">
+                    </div>
+                @empty
+                    <div class="col-span-full rounded-2xl border border-slate-700 bg-slate-900 p-6 text-center text-slate-400">
+                        Aún no hay habilidades registradas. Agrégalas desde el panel de administración.
+                    </div>
+                @endforelse
 
-        <div class="mb-16 text-center">
-            <h2 class="mb-6 text-4xl font-bold text-white md:text-5xl">Habilidades</h2>
-            <p class="text-lg text-slate-400">Tecnologías que domino y uso en mis proyectos.</p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-6">
-
-            @forelse ($tecnologia as $item)
-                @php
-                    $nombre = $item->nombre ?? 'Tecnología';
-                    $logo   = $buscar($logos, $item->nombre ?? null);
-                    $icono  = $logo ? null : $buscar($iconos, $item->nombre ?? null);
-
-                    // Sin logo, sin insignia y sin imagen: insignia genérica con iniciales
-                    if (!$logo && !$icono && empty($item->imagen)) {
-                        $icono = [mb_strtoupper(mb_substr($nombre, 0, 2)), '#0891B2', '#FFFFFF'];
-                    }
-
-                    $tam = $icono ? (mb_strlen($icono[0]) <= 2 ? 28 : (mb_strlen($icono[0]) === 3 ? 22 : 17)) : 0;
-                @endphp
-
-                <div
-                    class="flex flex-col items-center justify-center gap-3 rounded-3xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:border-cyan-500 hover:bg-slate-800">
-
-                    @if ($logo)
-                        {{-- Logo real en SVG --}}
-                        <svg viewBox="{{ $logo[0] }}" class="h-16 w-16" role="img" aria-label="{{ $nombre }}"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <title>{{ $nombre }}</title>
-                            {!! $logo[1] !!}
-                        </svg>
-                    @elseif ($icono)
-                        {{-- Insignia SVG con el color de la marca --}}
-                        <svg viewBox="0 0 64 64" class="h-16 w-16" role="img" aria-label="{{ $nombre }}"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <title>{{ $nombre }}</title>
-                            <rect width="64" height="64" rx="14" fill="{{ $icono[1] }}" />
-                            <text x="32" y="32" text-anchor="middle" dominant-baseline="central"
-                                font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-                                font-weight="700" font-size="{{ $tam }}" fill="{{ $icono[2] }}">{{ $icono[0] }}</text>
-                        </svg>
-                    @else
-                        {{-- Respaldo: imagen guardada en la base de datos --}}
-                        <img src="{{ asset($item->imagen) }}" alt="{{ $nombre }}" loading="lazy"
-                            class="h-16 w-16 object-contain">
-                    @endif
-
-                    <span class="text-sm font-medium text-slate-300">{{ $nombre }}</span>
-                </div>
-            @empty
-                <div class="col-span-full rounded-2xl border border-slate-700 bg-slate-900 p-6 text-center text-slate-400">
-                    Aún no hay habilidades registradas. Agrégalas desde el panel de administración.
-                </div>
-            @endforelse
+            </div>
 
         </div>
-
-    </div>
-</section>
+    </section>
 
     <!-- ===== PORTAFOLIO ===== -->
     <section id="portfolio" class="scroll-mt-24 bg-slate-900 py-24">
