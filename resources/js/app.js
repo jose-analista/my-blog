@@ -1,7 +1,7 @@
 import './bootstrap';
 import $ from 'jquery';
 import Typed from 'typed.js';
-import OpenAI from "openai";
+
 import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 Alpine.start();
@@ -36,18 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | OpenAI / Groq
-    |--------------------------------------------------------------------------
-    */
-
-    const client = new OpenAI({
-        apiKey: import.meta.env.VITE_GROQ_API_KEY,
-        baseURL: import.meta.env.VITE_GROQ_BASE_URL,
-        dangerouslyAllowBrowser: true
-    });
 
     /*
     |--------------------------------------------------------------------------
@@ -150,38 +138,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
 
-            const response = await client.chat.completions.create({
-
-                model: "llama-3.3-70b-versatile",
-
-                messages: [
-
-                    {
-                        role: "system",
-                        content: `
-                        Eres el asistente virtual profesional del sitio web de José Calderón.
-
-                        Servicios:
-                        - Desarrollo Laravel
-                        - APIs REST
-                        - VPS Linux
-                        - Docker
-                        - IA
-                        - Automatización
-                        - Desarrollo Full Stack
-
-                        Responde profesionalmente y breve.
-                        `
-                    },
-
-                    {
-                        role: "user",
-                        content: text
-                    }
-
-                ]
-
+            const response = await fetch('/chat/ia', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document
+                        .querySelector('meta[name="csrf-token"]')
+                        .content,
+                },
+                body: JSON.stringify({
+                    message: text,
+                }),
             });
+
+            const data = await response.json();
+
+             if (!response.ok) {
+                 throw new Error(data.message || 'Error al consultar la IA');
+             }
+
+            addMessage(data.reply, 'bot');
 
             typing.classList.add("hidden");
 
@@ -194,10 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             typing.classList.add("hidden");
 
-            addMessage(
-                "Ocurrió un error al conectar con la IA.",
-                "bot"
-            );
+            // addMessage(
+            //     "Ocurrió un error al conectar con la IA.",
+            //     "bot"
+            // );
 
             console.error(error);
         }

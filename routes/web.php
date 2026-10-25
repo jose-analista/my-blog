@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\VentaController;
 use App\Http\Controllers\ContactoControllerform;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DisenoswebController;
+use App\Http\Controllers\Admin\ChatController;
 use App\Models\Cliente;
 use App\Models\Contacto;
 use App\Models\Educacion;
@@ -50,6 +51,9 @@ Route::get('/', function () {
 
     return view('welcome', compact('tecnologia', 'proyecto', 'cliente', 'empresa', 'educacion', 'experiencia'));
 })->name('Welcome');
+
+Route::post('/chat/ia', [ChatController::class, 'send'])
+    ->name('chat.ia');
 
 Route::get('descargar-archivo', [ContactoControllerform::class, 'descargarArchivo'])->name('Cv.pdf');
 
@@ -203,5 +207,8 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
 Route::get('/webdisenos/{diseno}/preview', [DisenoswebController::class, 'preview'])->name('disenos.preview');
 
 Route::resource('disenos', DisenoswebController::class)->names('Diseno');
+
+
+
 
 });

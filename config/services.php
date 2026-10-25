@@ -30,5 +30,12 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'groq' => [
+    'key' => env('VITE_GROQ_API_KEY'),
+    'base_url' => env(
+        'VITE_GROQ_BASE_URL',
+        'https://api.groq.com/openai/v1'
+    ),
+],
 
 ];
