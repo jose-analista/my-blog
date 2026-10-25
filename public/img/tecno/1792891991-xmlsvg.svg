@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 300" width="256" height="300">
+  <path d="M40 10H170L226 66V270Q226 286 210 286H40Q24 286 24 270V26Q24 10 40 10Z" fill="#fff" stroke="#263238" stroke-width="8" stroke-linejoin="round"></path>
+  <path d="M170 10V50Q170 66 186 66H226Z" fill="#ff6d00"></path>
+  <path d="M70 115 48 137 70 159M186 115 208 137 186 159M148 105 108 169" fill="none" stroke="#ff6d00" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M28 202H222V266Q222 282 206 282H44Q28 282 28 266Z" fill="#ff6d00"></path>
+  <text x="125" y="256" font-family="Arial,sans-serif" font-size="49" font-weight="bold" fill="#fff" text-anchor="middle">XML</text>
+</svg>

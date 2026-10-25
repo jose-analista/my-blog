@@ -1,53 +1,116 @@
 <!-- ======= HERO ======= -->
-<section id="hero"
-    class="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 pt-24 pb-16">
-
+<section
+    id="hero"
+    class="relative isolate flex min-h-[90svh] items-center overflow-hidden bg-[#080d18] px-6 pb-20 pt-28 text-white sm:px-10 lg:min-h-screen lg:px-16"
+>
     <!-- Fondo decorativo -->
-    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div class="absolute left-0 top-0 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl"></div>
-        <div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl"></div>
+    <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div class="absolute -right-40 -top-40 h-[30rem] w-[30rem] rounded-full bg-cyan-500/[0.10] blur-[120px]"></div>
+        <div class="absolute -bottom-48 -left-32 h-[32rem] w-[32rem] rounded-full bg-blue-600/[0.12] blur-[130px]"></div>
+
+        <!-- Cuadrícula sutil -->
+        <div
+            class="absolute inset-0 opacity-[0.07]"
+            style="background-image: linear-gradient(rgba(148,163,184,.25) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.25) 1px, transparent 1px); background-size: 48px 48px;"
+        ></div>
     </div>
 
-    <div class="relative z-10 px-6 text-center">
+    <div class="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
 
-        <div class="mb-8 flex justify-center">
-            <img src="{{ asset('assets/img/img3.jpg') }}" alt="Foto de José Calderón" width="160" height="160"
-                class="h-40 w-40 rounded-full border-4 border-cyan-400 object-cover shadow-2xl transition duration-500 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100">
+        <!-- Presentación -->
+        <div class="order-2 text-center lg:order-1 lg:text-left">
+
+            <div class="mb-7 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-300">
+                <span class="relative flex h-2 w-2">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-50 motion-reduce:animate-none"></span>
+                    <span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-400"></span>
+                </span>
+                Analista Programador · Desarrollo de software
+            </div>
+
+            <p class="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">
+                Hola, soy
+            </p>
+
+            <h1 class="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
+                José
+                <span class="mt-1 block text-slate-300">Calderón.</span>
+            </h1>
+
+            <h2 class="mt-6 text-xl font-medium leading-relaxed text-slate-200 sm:text-2xl">
+                Desarrollo soluciones web
+                <span class="text-cyan-400"> útiles, sólidas y mantenibles.</span>
+            </h2>
+
+            <p class="mx-auto mt-5 max-w-xl text-base leading-8 text-slate-400 sm:text-lg lg:mx-0">
+                Creo sistemas web, APIs y automatizaciones con Laravel, PHP, Python y Linux,
+                enfocándome en resolver problemas reales mediante tecnología.
+            </p>
+
+            <!-- Tecnologías -->
+            <div class="mt-7 flex flex-wrap justify-center gap-2 lg:justify-start">
+                <span class="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300">Laravel</span>
+                <span class="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300">PHP</span>
+                <span class="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300">Python</span>
+                <span class="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300">SQL</span>
+                <span class="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300">Linux</span>
+            </div>
+
+            <!-- Acciones -->
+            <div class="mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
+                <a
+                    href="#portfolio"
+                    class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-500/10 transition duration-200 hover:-translate-y-0.5 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080d18] motion-reduce:transform-none"
+                >
+                    Ver proyectos
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                    href="#contact"
+                    class="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/15 px-6 py-3 font-semibold text-white transition duration-200 hover:border-cyan-400/60 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                >
+                    Hablemos
+                </a>
+
+                <a
+                    href="https://github.com/jose-analista"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex min-h-12 items-center justify-center px-4 py-3 text-sm font-medium text-slate-400 transition hover:text-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                    aria-label="Ver perfil de GitHub (abre en una pestaña nueva)"
+                >
+                    GitHub ↗
+                </a>
+            </div>
         </div>
 
-        <h1 class="mb-6 text-5xl font-extrabold tracking-tight text-white md:text-7xl">
-            José Calderón
-        </h1>
+        <!-- Foto -->
+        <div class="order-1 flex justify-center lg:order-2">
+            <div class="relative">
+                <div class="absolute -inset-5 rounded-[2rem] bg-gradient-to-br from-cyan-400/20 to-blue-600/10 blur-2xl"></div>
 
-        <p class="text-xl font-light text-slate-300 md:text-3xl">
-            Yo soy
-            <span class="typed font-semibold text-cyan-400"
-                data-typed-items="Analista Programador :), Desarrollador Laravel 🚀, Full Stack Developer 💻"></span>
-        </p>
+                <div class="relative rounded-[2rem] border border-white/10 bg-white/[0.04] p-3 shadow-2xl shadow-black/30">
+                    <img
+                        src="{{ asset('assets/img/img3.jpg') }}"
+                        alt="Retrato de José Calderón, Analista Programador"
+                        width="420"
+                        height="520"
+                        fetchpriority="high"
+                        class="h-64 w-64 rounded-[1.5rem] object-cover object-center sm:h-80 sm:w-80 lg:h-[420px] lg:w-[340px]"
+                    />
 
-        <p class="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-400 md:text-lg">
-            Construyo sistemas web, APIs y automatizaciones con Laravel y Linux.
-        </p>
-
-        <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <a href="#portfolio"
-                class="rounded-2xl bg-cyan-500 px-8 py-4 font-semibold text-slate-950 shadow-lg transition hover:bg-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
-                Ver portafolio
-            </a>
-
-            <a href="#contact"
-                class="rounded-2xl border border-white/20 px-8 py-4 font-semibold text-white backdrop-blur-sm transition hover:border-cyan-400 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
-                Contactarme
-            </a>
-
-            <a href="https://github.com/jose-analista" target="_blank" rel="noopener noreferrer"
-                class="rounded-2xl border border-white/20 px-8 py-4 font-semibold text-white backdrop-blur-sm transition hover:border-cyan-400 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
-                GitHub
-            </a>
+                    <div class="absolute -bottom-4 left-1/2 w-max -translate-x-1/2 rounded-xl border border-white/10 bg-[#101827]/95 px-5 py-3 shadow-xl backdrop-blur sm:left-auto sm:right-[-1.5rem] sm:translate-x-0">
+                        <p class="text-xs text-slate-400">Enfoque profesional</p>
+                        <p class="mt-1 text-sm font-semibold text-white">Software · Web · Automatización</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 </section>
+
 <!-- End Hero -->
 
 <main id="main" class="bg-slate-950 text-white">
@@ -344,16 +407,29 @@
                             <h3 class="mb-2 text-xl font-bold text-cyan-400">Correo</h3>
                             <a href="mailto:jose.calderon15@inacapmail.cl"
                                 class="break-all text-slate-300 hover:text-cyan-300">
-                                jose.calderon15@inacapmail.cl
+                                analista.jose@outlook.com
                             </a>
                         </div>
 
-                        <div>
-                            <h3 class="mb-2 text-xl font-bold text-cyan-400">Teléfono</h3>
-                            <a href="tel:+56935629178" class="text-slate-300 hover:text-cyan-300">
-                                +56 9 3562 9178
-                            </a>
-                        </div>
+                        
+<div>
+    <h3 class="mb-2 text-xl font-bold text-cyan-400">Teléfono</h3>
+    <a href="tel:+56935629178"
+       class="text-slate-300 hover:text-cyan-300">
+        +56 9 3562 9178
+    </a>
+</div>
+
+<div>
+    <h3 class="mb-2 text-xl font-bold text-green-400">WhatsApp</h3>
+    <a href="https://wa.me/56935629178"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="text-slate-300 hover:text-green-300">
+        +56 9 3562 9178
+    </a>
+</div>
+
 
                         <div>
                             <h3 class="mb-2 text-xl font-bold text-cyan-400">Ubicación</h3>
