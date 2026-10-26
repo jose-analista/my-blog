@@ -1,108 +1,115 @@
-<!-- ======= HERO ======= -->
+{{-- ======= HERO ======= --}}
 <section
     id="hero"
-    class="relative isolate flex min-h-[90svh] items-center overflow-hidden bg-[#080d18] px-6 pb-20 pt-28 text-white sm:px-10 lg:min-h-screen lg:px-16"
+    class="relative isolate flex min-h-[85svh] items-center overflow-x-clip bg-[#080d18] px-6 pb-20 pt-28 text-white sm:px-10 lg:px-16"
+    aria-labelledby="hero-title"
 >
-    <!-- Fondo decorativo -->
+    {{-- Fondo decorativo --}}
     <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-        <div class="absolute -right-40 -top-40 h-[30rem] w-[30rem] rounded-full bg-cyan-500/[0.10] blur-[120px]"></div>
-        <div class="absolute -bottom-48 -left-32 h-[32rem] w-[32rem] rounded-full bg-blue-600/[0.12] blur-[130px]"></div>
-
-        <!-- Cuadrícula sutil -->
+        <div class="absolute -right-40 -top-40 h-[28rem] w-[28rem] rounded-full bg-cyan-500/10 blur-[100px]"></div>
+        <div class="absolute -bottom-48 -left-32 h-[28rem] w-[28rem] rounded-full bg-blue-600/10 blur-[100px]"></div>
         <div
             class="absolute inset-0 opacity-[0.07]"
             style="background-image: linear-gradient(rgba(148,163,184,.25) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.25) 1px, transparent 1px); background-size: 48px 48px;"
         ></div>
     </div>
 
-    <div class="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
+    <div class="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
 
-        <!-- Presentación -->
-        <div class="order-2 text-center lg:order-1 lg:text-left">
+        {{-- Presentación (en móvil va primero: el mensaje antes que la foto) --}}
+        <div class="text-center lg:text-left">
 
-            <div class="mb-7 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-300">
-                <span class="relative flex h-2 w-2">
-                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-50 motion-reduce:animate-none"></span>
-                    <span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-400"></span>
+            {{-- Disponibilidad --}}
+            <div class="mb-6 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-300">
+                <span class="relative flex h-2 w-2" aria-hidden="true">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50 motion-reduce:animate-none"></span>
+                    <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
                 </span>
-                Analista Programador · Desarrollo de software
+                Disponible para proyectos y trabajo remoto
             </div>
 
-            <p class="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">
-                Hola, soy
-            </p>
-
-            <h1 class="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
-                José
-                <span class="mt-1 block text-slate-300">Calderón.</span>
+            <h1 id="hero-title" class="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
+                José Calderón
             </h1>
 
-            <h2 class="mt-6 text-xl font-medium leading-relaxed text-slate-200 sm:text-2xl">
-                Desarrollo soluciones web
-                <span class="text-cyan-400"> útiles, sólidas y mantenibles.</span>
-            </h2>
-
-            <p class="mx-auto mt-5 max-w-xl text-base leading-8 text-slate-400 sm:text-lg lg:mx-0">
-                Creo sistemas web, APIs y automatizaciones con Laravel, PHP, Python y Linux,
-                enfocándome en resolver problemas reales mediante tecnología.
+            <p class="mt-4 text-xl font-medium text-cyan-400 sm:text-2xl">
+                Analista programador
             </p>
 
-            <!-- Tecnologías -->
-            <div class="mt-7 flex flex-wrap justify-center gap-2 lg:justify-start">
-                <span class="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300">Laravel</span>
-                <span class="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300">PHP</span>
-                <span class="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300">Python</span>
-                <span class="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300">SQL</span>
-                <span class="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300">Linux</span>
-            </div>
+            <p class="mx-auto mt-5 max-w-xl text-base leading-8 text-slate-300 sm:text-lg lg:mx-0">
+                Desarrollo sistemas web, APIs y automatizaciones con Laravel y Python.
+                Trabajo en Linux y me enfoco en software que se pueda mantener y que resuelva un problema real.
+            </p>
 
-            <!-- Acciones -->
+            {{-- Tecnologías (las principales; el stack completo va en otra sección) --}}
+            <ul class="mt-7 flex flex-wrap justify-center gap-2 lg:justify-start" aria-label="Tecnologías principales">
+                @foreach (['Laravel', 'PHP', 'Python', 'SQL', 'Linux'] as $tech)
+                    <li class="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300">
+                        {{ $tech }}
+                    </li>
+                @endforeach
+            </ul>
+
+            {{-- Acciones --}}
             <div class="mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
                 <a
                     href="#portfolio"
-                    class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-500/10 transition duration-200 hover:-translate-y-0.5 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080d18] motion-reduce:transform-none"
+                    class="inline-flex min-h-12 items-center justify-center rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-500/10 transition duration-200 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080d18]"
                 >
                     Ver proyectos
-                    <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                    href="{{ asset('assets/docs/cv-jose-calderon.pdf') }}"
+                    download
+                    class="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/15 px-6 py-3 font-semibold text-white transition duration-200 hover:border-cyan-400/60 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                >
+                    Descargar CV
                 </a>
 
                 <a
                     href="#contact"
-                    class="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/15 px-6 py-3 font-semibold text-white transition duration-200 hover:border-cyan-400/60 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                    class="inline-flex min-h-12 items-center justify-center px-4 py-3 font-medium text-slate-300 underline-offset-4 transition hover:text-cyan-300 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                 >
-                    Hablemos
+                    Contactarme
                 </a>
+            </div>
 
+            {{-- Redes --}}
+            <div class="mt-8 flex justify-center gap-5 text-sm text-slate-400 lg:justify-start">
                 <a
                     href="https://github.com/jose-analista"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex min-h-12 items-center justify-center px-4 py-3 text-sm font-medium text-slate-400 transition hover:text-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
-                    aria-label="Ver perfil de GitHub (abre en una pestaña nueva)"
+                    class="transition hover:text-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                    aria-label="GitHub de José Calderón (abre en una pestaña nueva)"
                 >
-                    GitHub ↗
+                    GitHub
                 </a>
+                {{-- Agrega aquí LinkedIn con el mismo patrón --}}
             </div>
         </div>
 
-        <!-- Foto -->
-        <div class="order-1 flex justify-center lg:order-2">
+        {{-- Foto --}}
+        <div class="flex justify-center">
             <div class="relative">
-                <div class="absolute -inset-5 rounded-[2rem] bg-gradient-to-br from-cyan-400/20 to-blue-600/10 blur-2xl"></div>
+                <div class="absolute -inset-5 rounded-[2rem] bg-gradient-to-br from-cyan-400/20 to-blue-600/10 blur-2xl" aria-hidden="true"></div>
 
                 <div class="relative rounded-[2rem] border border-white/10 bg-white/[0.04] p-3 shadow-2xl shadow-black/30">
                     <img
                         src="{{ asset('assets/img/img3.jpg') }}"
-                        alt="Retrato de José Calderón, Analista Programador"
-                        width="420"
-                        height="520"
+                        alt="Retrato de José Calderón"
+                        width="680"
+                        height="840"
                         fetchpriority="high"
-                        class="h-64 w-64 rounded-[1.5rem] object-cover object-center sm:h-80 sm:w-80 lg:h-[420px] lg:w-[340px]"
+                        decoding="async"
+                        class="aspect-[4/5] w-52 rounded-[1.5rem] object-cover object-center sm:w-72 lg:w-[340px]"
                     />
 
-                    <div class="absolute -bottom-4 left-1/2 w-max -translate-x-1/2 rounded-xl border border-white/10 bg-[#101827]/95 px-5 py-3 shadow-xl backdrop-blur sm:left-auto sm:right-[-1.5rem] sm:translate-x-0">
-                        <p class="text-xs text-slate-400">Enfoque profesional</p>
-                        <p class="mt-1 text-sm font-semibold text-white">Software · Web · Automatización</p>
+                    {{-- Insignia: dentro del marco en móvil, desplazada solo desde sm --}}
+                    <div class="absolute -bottom-4 left-1/2 w-max max-w-[90%] -translate-x-1/2 rounded-xl border border-white/10 bg-[#101827]/95 px-5 py-3 shadow-xl backdrop-blur sm:left-auto sm:right-[-1.5rem] sm:translate-x-0">
+                        <p class="text-xs text-slate-400">Enfoque</p>
+                        <p class="mt-1 text-sm font-semibold text-white">Web, APIs y automatización</p>
                     </div>
                 </div>
             </div>
